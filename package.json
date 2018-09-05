@@ -1,0 +1,24 @@
+{
+  "name": "git_service",
+  "version": "1.0.0",
+  "description": "Gets a list of github.com repositories",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxHlystov/git_service_test.git"
+  },
+  "keywords": [
+    "git",
+    "job",
+    "productivity"
+  ],
+  "author": "Maksim Khlystov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MaxHlystov/git_service_test/issues"
+  },
+  "homepage": "https://github.com/MaxHlystov/git_service_test#readme"
+}
