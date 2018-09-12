@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1 Github repositories of #{user}
+  img(class='userPhoto' src=imgLink)
+  ul
+    each item in list
+      li 
+        a(href=item.link) #{item.name}
