@@ -22,6 +22,12 @@ function showRepos(req, res, user, repos) {
         })
 }
 
+router.get('/', function(req, res, next) {
+    var client_id = process.env.GITHUB_CLIENT;
+    var callback = req.getUrl("github/callback");
+    res.redirect(`https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${callback}`);
+});
+
 router.get('/callback', function(req, res, next) {
     let code = req.query.code;
     if(code == undefined) {
@@ -45,28 +51,16 @@ router.get('/callback', function(req, res, next) {
             .catch((err) => {
                 console.log('Error getting access token: ' + err);
                 res.status(500);
-                res.render('error', {"message": "Error getting user information.", error: err});
+                res.render('error', {"message": "Error getting user information.", "error": err});
             });
         })
         .catch((err) => {
             console.log('Error getting access token: ' + err);
             res.status(500);
-            res.render('error', { "message": "Error getting user information.", error: err });
+            res.render('error', { "message": "Error getting user information.", "error": err });
         });
     }
 });
 
-router.get('/repos', function(req, res, next) {
-    var imgLink = 'https://avatars2.githubusercontent.com/u/15244872?s=460&v=4'
-    var userName = 'Maksim'
-    res.render('repositories', 
-        { user: userName,
-          imgLink: imgLink,
-          list: [{name: "1", link: "/1"},
-            {name: "2", link: "/2"},
-            {name: "3", link: "/3"},
-            ]
-    });
-});
 
 module.exports = router;

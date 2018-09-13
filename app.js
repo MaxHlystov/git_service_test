@@ -5,10 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var url = require('url');
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
-
 var indexRouter = require('./routes/index');
 var githubRouter = require('./routes/github');
 

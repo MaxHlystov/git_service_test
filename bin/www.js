@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 
+// Load app environment
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 /**
  * Module dependencies.
  */
@@ -11,7 +16,6 @@ var http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
