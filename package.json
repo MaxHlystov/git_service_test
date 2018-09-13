@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Gets a list of github.com repositories",
   "private": true,
+  "engines": {
+    "npm": "4.2.0"
+  }
   "scripts": {
     "start": "node ./bin/www.js",
     "test": "echo \"Error: no test specified\" && exit 1"
