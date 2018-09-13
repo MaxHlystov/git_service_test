@@ -24,13 +24,13 @@ function showRepos(req, res, user, repos) {
 
 router.get('/', function(req, res, next) {
     var client_id = process.env.GITHUB_CLIENT;
-    var callback = req.getUrl("github/callback");
+    var callback = req.getUrl("/github/callback");
     console.log(`Client id: ${client_id}; callback: ${callback}`);
     if(client_id === undefined) {
         res.render('error', {
-            "message": "Env variable CLIENT_ID was not specified.", 
-            "error": { status: "Error",
-                       stack: "" }})
+            message: "Env variable GITHUB_CLIENT was not specified.", 
+            error: { status: "Error",
+                     stack: "" }})
     }
     else {
         res.redirect(`https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${callback}`);
@@ -40,7 +40,8 @@ router.get('/', function(req, res, next) {
 router.get('/callback', function(req, res, next) {
     let code = req.query.code;
     if(code == undefined) {
-        res.render('index', { title: 'Github repsitories of user listener' });
+        res.render('error', { message: 'Error retrieving user code from github',
+                              error: { status: "Error", stack: req.url } });
     }
     else {
         console.log('Respond from github.com with a code ' + code);
