@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
+
 // Load app environment
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-  console.log("Read process environment:")
-  console.log(process.env)
+  require('dotenv').config({path: require('path').join(__dirname, "../.env")}); 
 }
 
+console.log("Client id " + process.env.GITHUB_CLIENT)
+  
 /**
  * Module dependencies.
  */
