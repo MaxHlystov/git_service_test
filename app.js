@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
   req.getUrl = function(pathname) {
     return url.format({
-      protocol: req.protocol, // "https",
+      protocol: "https",
       host: req.get('host'),
       pathname: pathname
     });
