@@ -25,7 +25,16 @@ function showRepos(req, res, user, repos) {
 router.get('/', function(req, res, next) {
     var client_id = process.env.GITHUB_CLIENT;
     var callback = req.getUrl("github/callback");
-    res.redirect(`https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${callback}`);
+    console.log(`Client id: ${client_id}; callback: ${callback}`);
+    if(client_id === undefined) {
+        res.render('error', {
+            "message": "Env variable CLIENT_ID was not specified.", 
+            "error": { status: "Error",
+                       stack: "" }})
+    }
+    else {
+        res.redirect(`https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${callback}`);
+    }
 });
 
 router.get('/callback', function(req, res, next) {

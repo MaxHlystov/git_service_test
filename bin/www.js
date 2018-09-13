@@ -3,6 +3,8 @@
 // Load app environment
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
+  console.log("Read process environment:")
+  console.log(process.env)
 }
 
 /**
